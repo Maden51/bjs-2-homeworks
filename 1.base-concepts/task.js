@@ -1,35 +1,29 @@
+"use strict";
 function solveEquation(a, b, c) {
-  "use strict";
-  let discriminant;
-  let x;
-  let y;
-  let arr;
-  discriminant = (b ** 2) - (4 * a * c);
-  if (discriminant < 0) {
-    arr = [];
+  const discriminant = (b ** 2) - (4 * a * c);
+  if (discriminant > 0) {
+    return [(-b + Math.sqrt(discriminant)) / (2 * a), (-b - Math.sqrt(discriminant)) / (2 * a)];
+  } else if (discriminant === 0) {
+    return [-b / (2 * a)];
   }
-  else if (discriminant === 0) {
-    x = -b / (2 * a);
-    arr = [x];
-  }
-  else if (discriminant > 0) {
-    x = (-b + Math.sqrt(b ** 2 - 4 * a * c)) / (2 * a);
-    y = (-b - Math.sqrt(b ** 2 - 4 * a * c)) / (2 * a);
-    arr = [x, y];
-  }
-  return arr; 
+  return [];
 }
 
 function calculateTotalMortgage(percent, contribution, amount, date) {
-  "use strict";
-  let totalAmount;
-  let now = Math.floor(Date.now() / 2.628e+9);
-  let s = amount - contribution;
-  let n = (Math.floor(date / 2.628e+9) - now);
-  let p = (percent / 12) / 100;
-  let monthAmount;
-  monthAmount = s * (p + p / (((1 + p) ** n) - 1));
-  totalAmount = (monthAmount * n).toFixed(2);
-  console.log(totalAmount);
-  return +totalAmount;
+  if (isNaN(percent) === true || percent === '' || percent === ' ') {
+    return (`Параметр Процентная ставка содержит неправильное значение ${percent}`);
+  } else if (isNaN(contribution) === true || contribution === '' || contribution === ' '){
+    return (`Параметр Начальный взнос содержит неправильное значение ${contribution}`)
+  } else if (isNaN(amount) === true || amount === '' || amount === ' ') {
+    return (`Параметр Общая стоимость содержит неправильное значение ${amount}`)
+  } else {
+    const now = Math.floor(Date.now() / 2.628e+9);
+    const sum = Number(amount) - Number(contribution);
+    const monthCount = (Math.floor(date / 2.628e+9) - now);
+    const percentPart = Number(percent) / 12 / 100;
+    const monthAmount = sum * (percentPart + percentPart / (((1 + percentPart) ** monthCount) - 1));
+    const totalAmount = Number((monthAmount * monthCount).toFixed(2));
+    console.log(totalAmount);
+    return totalAmount;
+  }
 }
