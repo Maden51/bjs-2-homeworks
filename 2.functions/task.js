@@ -19,7 +19,7 @@ function getArrayParams(arr) {
 
   avg = (sum / arr.length).toFixed(2);
 
-  return { min:min, max:max, avg:avg };
+  return { min, max, avg };
 }
 
 // Задание 2
@@ -33,7 +33,7 @@ function worker(arr) {
 }
 
 function makeWork(arrOfArr, func) {
-  let max = -1000;
+  let max = Number.MIN_SAFE_INTEGER;
 
   for (let i = 0; i < arrOfArr.length; i++) {
     let sumOfArr = func(arrOfArr[i]);
@@ -45,6 +45,7 @@ function makeWork(arrOfArr, func) {
 
   return max
 }
+
 // Задание 3
 
 function worker2(arr) {
