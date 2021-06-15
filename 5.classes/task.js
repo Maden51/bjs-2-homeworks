@@ -107,3 +107,63 @@ class Library {
 
 // Задача №3
 
+class StudentLog {
+    constructor(name, gender, age) {
+        this.name = name;
+        this.gender = gender;
+        this.age = age;
+        this.marks = {};
+    }
+
+    getName() {
+        return this.name;
+    }
+
+    addGrade(subjectName, mark) {
+        if(mark >= 1 && mark <=5) {
+            if(!(subjectName in this.marks)) {
+                this.marks[subjectName] = [];
+            }
+            this.marks[subjectName].push(mark);
+        } else {
+            console.log("Ошибка, оценка должна быть числом от 1 до 5");
+        }
+    }
+
+    getAverageBySubject(subjectName) {
+        if(subjectName in this.marks) {
+            let sum = 0;
+            for (let mark of this.marks[subjectName]){
+                sum += mark;
+            }
+            let avg = Number((sum / this.marks[subjectName].length).toFixed(2));
+            console.log(`Средний балл по предмету ${subjectName} ${avg}`);
+            return avg;
+        } else {
+            console.log("Несуществующий предмет");
+        }
+    }
+
+    getTotalAverage() {
+        let sum = 0;
+        let count = 0;
+        for (let subjectName in this.marks) {
+            sum += this.getAverageBySubject(subjectName)
+            count ++;
+        }
+        if (count > 0) {
+            let avg = Number((sum / count).toFixed(2));
+            console.log(`Средний балл по всем предметам ${avg}`);
+            return avg;
+        } else {
+            console.log("Не найдено ни одной оценки")
+        }
+    }
+
+    exclude(reason) {
+        if (this.getAverage !== null) {
+            delete this.marks;
+        }
+        console.log(`${reason}`);
+    }
+}
