@@ -47,6 +47,7 @@ function makeWork(arrOfArr, func) {
 }
 
 // Задание 3
+<<<<<<< HEAD
 
 function worker2(arr) {
   let min = 101;
@@ -66,4 +67,8 @@ function worker2(arr) {
   }
 
   return diff
+=======
+function worker2(arr) {
+  // Ваш код
+>>>>>>> e74d761e1bc67ec31fe68cd995b0fc6e8fdb30a6
 }

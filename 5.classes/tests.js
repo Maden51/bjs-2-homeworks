@@ -1,4 +1,4 @@
-describe('Домашнее задание к занятию 2.3 «ООП в JS (ES6)»', () => {
+describe('Домашнее задание к лекции 5 «Объекты»', () => {
 
   describe('Задача №1', () => {
     let printItem;
@@ -104,20 +104,16 @@ describe('Домашнее задание к занятию 2.3 «ООП в JS (
   })
 
   describe('Задача №3', () => {
-    let studentLog;
+    let student;
   
     beforeEach(function(){
-      studentLog = new StudentLog("Иван Петров");
+      student = new Student("Иван Петров");
     });
 
-    it('создание объекта StudentLog', () => {
-      expect(studentLog).toBeDefined();
+    it('создание объекта Student', () => {
+      expect(student).toBeDefined();
     });
-  
-    it('получение имени студента', () => {
-      expect(studentLog.getName()).toEqual("Иван Петров");
-    });
-  
+ 
     it('подсчёт средней оценки по предмету', () => {
       studentLog.addGrade("algebra", 3);
       studentLog.addGrade("algebra", 5);

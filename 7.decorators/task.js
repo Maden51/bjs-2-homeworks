@@ -1,15 +1,12 @@
-function compareArrays(arr1, arr2) {
-  let result;
-
+function cachingDecoratorNew(func) {
   // Ваш код
-
-  return result; // boolean
 }
 
-function advancedFilter(arr) {
-  let resultArr;
 
+function debounceDecoratorNew(func) {
   // Ваш код
+}
 
-  return resultArr; // array
+function debounceDecorator2(func) {
+  // Ваш код
 }
