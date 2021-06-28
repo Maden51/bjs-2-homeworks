@@ -5,20 +5,17 @@ class AlarmClock {
     constructor() {
         this.alarmCollection = [];
         this.timerId = null;
-        this.time = 'time';
-        this.id = 'id';
-        this.callback = 'callback';
     }
 
     addClock(alarmTime, alarmCall, alarmId) {
         if (alarmId === undefined) {
             throw new Error('Необходимо указать идентификационный номер будильника');
-        } else {
-          if (this.alarmCollection.find(alarm => alarm[this.id] === alarmId)) {
+        } 
+        if (this.alarmCollection.find(alarm => alarm[this.id] === alarmId)) {
             console.error(`Такой будильник с идентификатором ${alarmId} уже существует`);
             return false;
             }
-          }
+          
         this.alarmCollection.push({[this.time]: alarmTime, [this.callback]: alarmCall, [this.id]: alarmId});
         return true;
     }
@@ -39,13 +36,10 @@ class AlarmClock {
 
     start(){
         const checkClock = (alarm) => {
-            if(alarm[this.time] === getCurrentFormattedTime()) {
+            if(alarm[this.time] === this.getCurrentFormattedTime()) {
                 alarm[this.callback]();
-            } 
-            if (this.timerId === null) {
-                this.timerId = setInterval(() => this.alarmCollection.forEach(item => checkClock(item)), 1000);
             }
-        }   
+        }    
     }
     
     stop(){
